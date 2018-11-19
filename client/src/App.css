@@ -37,3 +37,8 @@ img {
 .form-control::placeholder {
   color: #bbb !important;
 }
+
+.nav-link{
+  cursor: pointer;
+  color: white;
+}
