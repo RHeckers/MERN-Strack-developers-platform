@@ -1,15 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import classnames from 'classnames';
 import { connect } from 'react-redux';
-import { registeruser } from '../../actions/authActions';
-
-import TextFieldGroupd from '../common/TextFieldGroup';
+import { registerUser } from '../../actions/authActions';
+import TextFieldGroup from '../common/TextFieldGroup';
 
 class Register extends Component {
-
-  constructor(){
+  constructor() {
     super();
     this.state = {
       name: '',
@@ -17,27 +14,26 @@ class Register extends Component {
       password: '',
       password2: '',
       errors: {}
-    }
-
+    };
   }
 
-  componentDidMount = () => {
-    if(this.props.auth.isAuthenticated){
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
       this.props.history.push('/dashboard');
     }
   }
-  
-  componentWillReceiveProps = (nextProps) => {
-    if(nextProps.errors){
-      this.setState({errors: nextProps.errors});
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
     }
   }
 
-  onChange = (e) => {
-    this.setState({[e.target.name]: e.target.value});
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
-  onSubmit = (e) => {
+  onSubmit = e => {
     e.preventDefault();
 
     const newUser = {
@@ -45,15 +41,12 @@ class Register extends Component {
       email: this.state.email,
       password: this.state.password,
       password2: this.state.password2
-    }
+    };
 
-    this.props.registeruser(newUser, this.props.history);
-
-    
+    this.props.registerUser(newUser, this.props.history);
   }
 
   render() {
-
     const { errors } = this.state;
 
     return (
@@ -62,58 +55,61 @@ class Register extends Component {
           <div className="row">
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Sign Up</h1>
-              <p className="lead text-center">Create your DevConnector account</p>
-              <form onSubmit={this.onSubmit}>
-                <TextFieldGroupd
+              <p className="lead text-center">
+                Create your DevConnector account
+              </p>
+              <form noValidate onSubmit={this.onSubmit}>
+                <TextFieldGroup
+                  placeholder="Name"
+                  name="name"
                   value={this.state.name}
                   onChange={this.onChange}
-                  placeholder="Name" 
-                  name="name"
                   error={errors.name}
                 />
-                <TextFieldGroupd
+                <TextFieldGroup
+                  placeholder="Email"
+                  name="email"
                   type="email"
                   value={this.state.email}
                   onChange={this.onChange}
-                  placeholder="Email" 
-                  name="email"
                   error={errors.email}
+                  info="This site uses Gravatar so if you want a profile image, use a Gravatar email"
                 />
-                <TextFieldGroupd
+                <TextFieldGroup
+                  placeholder="Password"
+                  name="password"
                   type="password"
                   value={this.state.password}
                   onChange={this.onChange}
-                  placeholder="Password" 
-                  name="password"
                   error={errors.password}
                 />
-                <TextFieldGroupd
+                <TextFieldGroup
+                  placeholder="Confirm Password"
+                  name="password2"
                   type="password"
                   value={this.state.password2}
                   onChange={this.onChange}
-                  placeholder="Password 2" 
-                  name="password2"
                   error={errors.password2}
-                />               
+                />
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-Register.PropTypes = {
-  registeruser: PropTypes.func.isRequired,
+Register.propTypes = {
+  registerUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
-}
+};
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { registeruser })(withRouter(Register)) ;
+export default connect(mapStateToProps, { registerUser })(withRouter(Register));
