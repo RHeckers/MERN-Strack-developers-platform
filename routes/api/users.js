@@ -81,6 +81,7 @@ router.post('/login', (req, res) => {
     // Find the user by email
     User.findOne({ email: email})
     .then(user => {
+        console.log(user)
         if(!user){
             errors.email = 'User not found';
             return res.status(404).json(errors);
@@ -99,7 +100,7 @@ router.post('/login', (req, res) => {
                 }
 
                 //Sign the token
-                jwt.sign(payload, keys.secret, {expiresIn: 7200}, (err, token) => {
+                jwt.sign(payload, keys.secretOrKey, {expiresIn: 7200}, (err, token) => {
                     res.json({
                         success: true,
                         token: 'Bearer ' + token
@@ -110,8 +111,8 @@ router.post('/login', (req, res) => {
                 errors.password = 'Password incoorect';
                 return res.status(400).json(errors)
             }
-        })
-    });
+        }).catch(err => console.log(err))
+    }).catch(err => console.log(err));
 
 });
 
