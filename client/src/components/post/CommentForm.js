@@ -11,9 +11,6 @@ class CommentForm extends Component {
       text: '',
       errors: {}
     };
-
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
@@ -22,7 +19,7 @@ class CommentForm extends Component {
     }
   }
 
-  onSubmit(e) {
+  onSubmit = e => {
     e.preventDefault();
 
     const { user } = this.props.auth;
@@ -38,7 +35,7 @@ class CommentForm extends Component {
     this.setState({ text: '' });
   }
 
-  onChange(e) {
+  onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   }
 

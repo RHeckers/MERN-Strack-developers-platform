@@ -20,19 +20,15 @@ class AddEducation extends Component {
       errors: {},
       disabled: false
     };
-
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onCheck = this.onCheck.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps = (nextProps) => {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
   }
 
-  onSubmit(e) {
+  onSubmit = (e) => {
     e.preventDefault();
 
     const eduData = {
@@ -48,11 +44,11 @@ class AddEducation extends Component {
     this.props.addEducation(eduData, this.props.history);
   }
 
-  onChange(e) {
+  onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  onCheck(e) {
+  onCheck = (e) => {
     this.setState({
       disabled: !this.state.disabled,
       current: !this.state.current
