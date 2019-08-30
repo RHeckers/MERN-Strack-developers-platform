@@ -30,13 +30,13 @@ class CreateProfile extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps = nextProps => {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
   }
 
-  onSubmit = (e) => {
+  onSubmit = e => {
     e.preventDefault();
 
     const profileData = {
@@ -58,7 +58,7 @@ class CreateProfile extends Component {
     this.props.createProfile(profileData, this.props.history);
   }
 
-  onChange = (e) => {
+  onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   }
 

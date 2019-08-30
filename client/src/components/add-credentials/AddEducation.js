@@ -44,11 +44,11 @@ class AddEducation extends Component {
     this.props.addEducation(eduData, this.props.history);
   }
 
-  onChange = (e) => {
+  onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  onCheck = (e) => {
+  onCheck = () => {
     this.setState({
       disabled: !this.state.disabled,
       current: !this.state.current

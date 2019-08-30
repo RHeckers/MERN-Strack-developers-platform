@@ -28,7 +28,7 @@ class AddExperience extends Component {
     }
   }
 
-  onSubmit = (e) => {
+  onSubmit = e => {
     e.preventDefault();
 
     const expData = {
@@ -44,11 +44,11 @@ class AddExperience extends Component {
     this.props.addExperience(expData, this.props.history);
   }
 
-  onChange = (e) => {
+  onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  onCheck = (e) => {
+  onCheck = () => {
     this.setState({
       disabled: !this.state.disabled,
       current: !this.state.current
