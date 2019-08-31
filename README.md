@@ -2,7 +2,7 @@
 Watch a video of this project:
 https://drive.google.com/file/d/1TODVaoQ8RrmzL6BCd0oPpEHQ2EZDeRMP/view
 
-> Small social network app built with the MERN stack.
+> Small social network app built with the MERN stack (MongoDb, Express, React, NodeJs).
 
 ## Quick Start
 
