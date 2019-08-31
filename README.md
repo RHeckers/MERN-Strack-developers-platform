@@ -1,4 +1,4 @@
-# DevConnector
+# Linked type of app where you can create profiles, follow people and update your account and status.
 Watch a video of this project:
 https://drive.google.com/file/d/1TODVaoQ8RrmzL6BCd0oPpEHQ2EZDeRMP/view
 
